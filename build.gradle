@@ -1,0 +1,53 @@
+allprojects {
+    group = 'com.registration'
+    version = 'v1'
+}
+
+subprojects {
+    apply plugin: 'java'
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        compile('org.projectlombok:lombok:1.18.18')
+        annotationProcessor 'org.projectlombok:lombok:1.18.18'
+    }
+}
+
+project(':reg-app') {
+    dependencies {
+        compile project(':service')
+        compile project(':repository')
+        compile project(':domain')
+        compile project(':utils')
+    }
+}
+
+
+project(':service') {
+    dependencies {
+        compile project(':repository')
+        compile project(':domain')
+        compile project(':utils')
+    }
+}
+
+project(':repository') {
+    dependencies {
+        compile project(':domain')
+    }
+}
+
+project(':utils') {
+   
+}
+
+project(':domain') {
+    dependencies {
+        compile project(':utils')
+    }
+}
+
+
+
